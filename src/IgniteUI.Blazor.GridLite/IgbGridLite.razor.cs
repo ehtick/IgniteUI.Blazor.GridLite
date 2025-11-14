@@ -100,7 +100,7 @@ public partial class IgbGridLite<TItem> : ComponentBase, IDisposable where TItem
     [Parameter]
     public EventCallback OnRendered { get; set; }
 
-    private ElementReference gridContainer;
+    private ElementReference grid;
     private IJSObjectReference blazorIgbGridLite;
     private JSHandler<TItem> jsHandler;
     private string gridId;
@@ -194,7 +194,7 @@ public partial class IgbGridLite<TItem> : ComponentBase, IDisposable where TItem
         var json = JsonSerializer.Serialize(config, GridJsonSerializerOptions);
 
         await InvokeVoidJsAsync("blazor_igc_grid_lite.renderGrid",
-            jsHandler.ObjectReference, gridContainer, json, GetEventFlags());
+            jsHandler.ObjectReference, grid, json, GetEventFlags());
 
         await OnRendered.InvokeAsync();
     }

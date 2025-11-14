@@ -4,7 +4,7 @@
           SortConfiguration="@sortConfiguration" Columns="cols"
           SortExpressions="@initialSort"
           FilterExpressions="@initialFilter"
-          OnSorting="HandleSort" OnSorted="HandleSorted"
+          OnSorting="HandleSorting" OnSorted="HandleSorted"
           OnFiltering="HandleFiltering" OnFiltered="HandleFiltered">
 
 </IgbGridLite>
@@ -74,7 +74,7 @@
         }
     }
 
-    private void HandleSort(IgbGridLiteSortingEvent<NwindDataItem> e)
+    private void HandleSorting(IgbGridLiteSortingEvent<NwindDataItem> e)
     {
         e.Cancel = true;
     }

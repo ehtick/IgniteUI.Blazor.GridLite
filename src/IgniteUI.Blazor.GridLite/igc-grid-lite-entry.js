@@ -14,7 +14,7 @@ window.blazor_igc_grid_lite = {
     grids: new Map(),
     dotNetRefs: new Map(),
 
-    renderGrid(dotNetObject, container, options, events) {
+    renderGrid(dotNetObject, gridElement, options, events) {
         const config = JSON.parse(options);
 
         if (!customElements.get('igc-grid-lite')) {
@@ -22,12 +22,6 @@ window.blazor_igc_grid_lite = {
         }
 
         this.destroyGrid(config.id);
-
-        let gridElement = container.querySelector('igc-grid-lite');
-        if (!gridElement) {
-            gridElement = document.createElement('igc-grid-lite');
-            container.appendChild(gridElement);
-        }
 
         gridElement.data = config.data;
         gridElement.columns = config.columns;
