@@ -1,1 +1,182 @@
-# Ignite UI GridLite Blazor wrapper
+# Ignite UI GridLite Blazor Wrapper
+
+A Blazor wrapper for the [Ignite UI GridLite](https://www.npmjs.com/package/igc-grid-lite) web component, providing a lightweight and performant data grid for Blazor applications.
+
+## Features
+
+- 🚀 Lightweight grid component built on web components
+- 📊 Column configuration with custom headers
+- 🔄 Sorting and filtering support
+- 🎨 Multiple built-in themes (Bootstrap, Material, Fluent, Indigo) with light/dark variants
+- 🔌 Easy integration with existing Blazor applications
+- 🎯 Multi-framework support (.NET 8, 9, and 10)
+
+## Installation
+
+Install the NuGet package:
+
+```bash
+dotnet add package IgniteUI.Blazor.GridLite
+```
+
+## Setup
+
+### 1. Add Required Services (TBD)
+
+In your `Program.cs`, no special services are required. The component uses standard Blazor JSInterop.
+
+### 2. Include JavaScript Module
+
+The JavaScript bundle is automatically included via `_content` static files.
+
+### 3. Add Theme Stylesheet
+
+In your `App.razor` or layout file, include one of the available themes:
+
+```html
+<!-- Light themes -->
+<link href="_content/IgniteUI.Blazor.GridLite/css/themes/light/bootstrap.css" rel="stylesheet" />
+<!-- or -->
+<link href="_content/IgniteUI.Blazor.GridLite/css/themes/light/material.css" rel="stylesheet" />
+<!-- or -->
+<link href="_content/IgniteUI.Blazor.GridLite/css/themes/light/fluent.css" rel="stylesheet" />
+<!-- or -->
+<link href="_content/IgniteUI.Blazor.GridLite/css/themes/light/indigo.css" rel="stylesheet" />
+
+<!-- Dark themes also available in css/themes/dark/ -->
+```
+
+## Basic Usage
+
+```razor
+@using IgniteUI.Blazor.Controls
+
+<IgbGridLite Data="@employees" 
+             Columns="@columns" />
+
+@code {
+    private List<Employee> employees = new();
+    private List<ColumnConfiguration<Employee>> columns = new();
+
+    protected override void OnInitialized()
+    {
+        employees = GetEmployees();
+        
+        columns = new List<ColumnConfiguration<Employee>>
+        {
+            new() { Key = "Id", HeaderText = "ID", Width = "100px", Type = DataType.Number },
+            new() { Key = "Name", HeaderText = "Employee Name", Type = DataType.String },
+            new() { Key = "Department", HeaderText = "Department", Type = DataType.String },
+            new() { Key = "Salary", HeaderText = "Salary", Width = "150px", Type = DataType.Number }
+        };
+    }
+}
+```
+
+## Advanced Configuration
+
+### Sorting
+
+Enable sorting on specific columns:
+
+```csharp
+new ColumnConfiguration<Employee> 
+{ 
+    Key = "Name", 
+    HeaderText = "Name",
+    Resizable = true,
+    Sort = true // Enable sorting
+}
+```
+
+### Filtering
+
+Enable filtering on columns:
+
+```csharp
+new ColumnConfiguration<Employee> 
+{ 
+    Key = "Department", 
+    HeaderText = "Department",
+    Filter = new ColumnFilterConfiguration 
+    { 
+        CaseSensitive = false 
+    }
+}
+```
+
+### Event Handling
+
+Handle sorting and filtering events:
+
+```razor
+<IgbGridLite Data="@employees" 
+             Columns="@columns"
+             OnSorting="@HandleSorting"
+             OnSorted="@HandleSorted"
+             OnFiltering="@HandleFiltering"
+             OnFiltered="@HandleFiltered" />
+
+@code {
+    private void HandleSorting(IgbGridLiteSortingEvent<Employee> e)
+    {
+        // Handle on sorting
+    }
+
+    private void HandleSorted(IgbGridLiteSortedEvent<NwindDataItem> e)
+    {
+        // Handle after sort
+    }
+
+    private void HandleFiltering(IgbGridLiteFilteringEvent<NwindDataItem> e)
+    {
+        // Handle on filtering
+    }
+
+    private void HandleFiltered(IgbGridLiteFilteredEvent<NwindDataItem> e)
+    {
+        // Handle after filter
+    }
+}
+```
+
+## Column Configuration
+
+The `ColumnConfiguration<TItem>` class supports:
+
+- `Key`: Property name to bind to
+- `HeaderText`: Column header display text
+- `Width`: Column width (CSS value)
+- `Type`: Data type (String, Number, Boolean, Date)
+- `Hidden`: Hide column
+- `Resizable`: Allow column resizing
+- `Sort`: Enable/configure sorting
+- `Filter`: Enable/configure filtering
+
+## Building from Source
+
+### Prerequisites
+
+- .NET 8, 9, or 10 SDK
+- Node.js (for building JavaScript bundle)
+
+### Build Steps
+
+1. Restore dependencies:
+    ```bash
+    dotnet restore
+    ```
+
+2. Build project:
+    ```bash
+    dotnet build
+    ```
+
+The build process (configured in `IgniteUI.Blazor.GridLite.csproj`) automatically:
+- Installs npm dependencies
+- Builds the JavaScript bundle using Vite
+- Copies theme files to wwwroot
+
+## Demo Application
+
+A demo application is available in `demo/GridLite.DemoApp/` showcasing various grid features and configurations.
