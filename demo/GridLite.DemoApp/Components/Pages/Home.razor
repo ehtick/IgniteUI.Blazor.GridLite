@@ -1,0 +1,115 @@
+﻿@page "/"
+
+<IgbGridLite @ref=grid TItem="NwindDataItem" Data="NwindData"
+          SortConfiguration="@sortConfiguration" Columns="cols"
+          SortExpressions="@initialSort"
+          FilterExpressions="@initialFilter"
+          OnSorting="HandleSort" OnSorted="HandleSorted"
+          OnFiltering="HandleFiltering" OnFiltered="HandleFiltered">
+
+</IgbGridLite>
+
+<button @onclick="BtnClick">Sort</button>
+
+@code {
+    public IgbGridLite<NwindDataItem> grid;
+
+    private GridSortConfiguration sortConfiguration = new GridSortConfiguration()
+    {
+        Multiple = true,
+        TriState = false
+    };
+
+    private List<SortExpression<NwindDataItem>> initialSort;
+    private List<FilterExpression<NwindDataItem>> initialFilter;
+
+    protected override void OnInitialized()
+    {
+        initialFilter = new List<FilterExpression<NwindDataItem>>
+        {
+            new FilterExpression<NwindDataItem>
+            {
+                Key = "ProductName",
+                Condition = "contains",
+                SearchTerm = "a"
+            },
+            new FilterExpression<NwindDataItem>
+            {
+                Key = "ProductName",
+                Condition = "contains",
+                SearchTerm = "b"
+            }
+        };
+
+        initialSort = new List<SortExpression<NwindDataItem>>
+        {
+            new SortExpression<NwindDataItem>
+            {
+                Key = "ProductName",
+                Direction = SortingDirection.Ascending
+            }
+        };
+    }
+
+    public async void BtnClick()
+    {
+        await this.grid.SortAsync(new List<SortExpression<NwindDataItem>>
+            {
+                new SortExpression<NwindDataItem>() { Key = "ProductName", Direction = SortingDirection.Descending }
+            }
+        );
+    }
+
+
+    private NwindData _nwindData = null;
+    public NwindData NwindData
+    {
+        get
+        {
+            if (_nwindData == null)
+            {
+                _nwindData = new NwindData();
+            }
+            return _nwindData;
+        }
+    }
+
+    private void HandleSort(IgbGridLiteSortingEvent<NwindDataItem> e)
+    {
+        e.Cancel = true;
+    }
+
+    private void HandleSorted(IgbGridLiteSortedEvent<NwindDataItem> e)
+    {
+
+    }
+
+    private void HandleFiltering(IgbGridLiteFilteringEvent<NwindDataItem> e)
+    {
+
+    }
+
+    private void HandleFiltered(IgbGridLiteFilteredEvent<NwindDataItem> e)
+    {
+
+    }
+
+    public List<ColumnConfiguration<NwindDataItem>> cols = new List<ColumnConfiguration<NwindDataItem>>() {
+     new ColumnConfiguration<NwindDataItem>(){
+        Key = "ProductID",
+        Type = DataType.Number,
+        Sort = new ColumnSortConfiguration(){
+         CaseSensitive = false
+        },
+        Filter = true,
+        Resizable = true
+     },
+        new ColumnConfiguration<NwindDataItem>(){
+        Key = "ProductName",
+        Type = DataType.String,
+         Sort = true,
+        Filter = true,
+        Resizable = true
+     },
+    };
+}

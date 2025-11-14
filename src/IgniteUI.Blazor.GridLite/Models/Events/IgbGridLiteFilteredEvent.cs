@@ -1,0 +1,22 @@
+﻿using System.Text.Json.Serialization;
+
+namespace IgniteUI.Blazor.Controls;
+
+/// <summary>
+/// Event object for the filtered event of the grid.
+/// </summary>
+/// <typeparam name="TItem">The data type for grid rows</typeparam>
+public class IgbGridLiteFilteredEvent<TItem> where TItem : class
+{
+    /// <summary>
+    /// The target column for the filter operation.
+    /// </summary>
+    [JsonPropertyName("key")]
+    public string Key { get; set; }
+
+    /// <summary>
+    /// The filter state of the column after the operation.
+    /// </summary>
+    [JsonPropertyName("state")]
+    public List<FilterExpression<TItem>> State { get; set; }
+}

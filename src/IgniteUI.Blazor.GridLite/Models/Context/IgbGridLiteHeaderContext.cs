@@ -1,0 +1,13 @@
+﻿namespace IgniteUI.Blazor.Controls;
+
+/// <summary>
+/// Context object for the column header template callback.
+/// </summary>
+/// <typeparam name="TItem">The data type for grid rows</typeparam>
+public class IgbGridLiteHeaderContext<TItem> where TItem : class
+{
+    /// <summary>
+    /// The current configuration for the column.
+    /// </summary>
+    public ColumnConfiguration<TItem> Column { get; set; }
+}
