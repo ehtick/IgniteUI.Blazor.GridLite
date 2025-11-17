@@ -46,7 +46,7 @@
             new SortExpression<NwindDataItem>
             {
                 Key = "ProductName",
-                Direction = SortingDirection.Ascending
+                Direction = GridLiteSortingDirection.Ascending
             }
         };
     }
@@ -55,7 +55,7 @@
     {
         await this.grid.SortAsync(new List<SortExpression<NwindDataItem>>
             {
-                new SortExpression<NwindDataItem>() { Key = "ProductName", Direction = SortingDirection.Descending }
+                new SortExpression<NwindDataItem>() { Key = "ProductName", Direction = GridLiteSortingDirection.Descending }
             }
         );
     }
