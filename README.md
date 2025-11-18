@@ -64,12 +64,33 @@ In your `App.razor` or layout file, include one of the available themes:
         
         columns = new List<ColumnConfiguration<Employee>>
         {
-            new() { Key = "Id", HeaderText = "ID", Width = "100px", Type = DataType.Number },
-            new() { Key = "Name", HeaderText = "Employee Name", Type = DataType.String },
-            new() { Key = "Department", HeaderText = "Department", Type = DataType.String },
-            new() { Key = "Salary", HeaderText = "Salary", Width = "150px", Type = DataType.Number }
+            new() { Key = nameof(Employee.Id), HeaderText = "ID", Width = "100px", Type = DataType.Number },
+            new() { Key = nameof(Employee.Name), HeaderText = "Employee Name", Type = DataType.String },
+            new() { Key = nameof(Employee.Department), HeaderText = "Department", Type = DataType.String },
+            new() { Key = nameof(Employee.Salary), HeaderText = "Salary", Width = "150px", Type = DataType.Number }
         };
     }
+}
+```
+
+### With Initial Sort and Filter
+
+```razor
+<IgbGridLite Data="@employees" 
+             Columns="@columns"
+             SortExpressions="@initialSort"
+             FilterExpressions="@initialFilter" />
+
+@code {
+    private List<SortExpression> initialSort = new()
+    {
+        new() { Key = nameof(Employee.Name), Direction = GridLiteSortingDirection.Ascending }
+    };
+    
+    private List<FilterExpression> initialFilter = new()
+    {
+        new() { Key = nameof(Employee.Department), Condition = "contains", SearchTerm = "Sales" }
+    };
 }
 ```
 
@@ -82,7 +103,7 @@ Enable sorting on specific columns:
 ```csharp
 new ColumnConfiguration<Employee> 
 { 
-    Key = "Name", 
+    Key = nameof(Employee.Name), 
     HeaderText = "Name",
     Resizable = true,
     Sort = true // Enable sorting
@@ -96,7 +117,7 @@ Enable filtering on columns:
 ```csharp
 new ColumnConfiguration<Employee> 
 { 
-    Key = "Department", 
+    Key = nameof(Employee.Department), 
     HeaderText = "Department",
     Filter = new ColumnFilterConfiguration 
     { 
@@ -118,22 +139,22 @@ Handle sorting and filtering events:
              OnFiltered="@HandleFiltered" />
 
 @code {
-    private void HandleSorting(IgbGridLiteSortingEvent<Employee> e)
+    private void HandleSorting(IgbGridLiteSortingEvent e)
     {
         // Handle on sorting
     }
 
-    private void HandleSorted(IgbGridLiteSortedEvent<NwindDataItem> e)
+    private void HandleSorted(IgbGridLiteSortedEvent e)
     {
         // Handle after sort
     }
 
-    private void HandleFiltering(IgbGridLiteFilteringEvent<NwindDataItem> e)
+    private void HandleFiltering(IgbGridLiteFilteringEvent e)
     {
         // Handle on filtering
     }
 
-    private void HandleFiltered(IgbGridLiteFilteredEvent<NwindDataItem> e)
+    private void HandleFiltered(IgbGridLiteFilteredEvent e)
     {
         // Handle after filter
     }
@@ -144,7 +165,7 @@ Handle sorting and filtering events:
 
 The `ColumnConfiguration<TItem>` class supports:
 
-- `Key`: Property name to bind to
+- `Key`: Property name to bind to (use `nameof()` for type safety)
 - `HeaderText`: Column header display text
 - `Width`: Column width (CSS value)
 - `Type`: Data type (String, Number, Boolean, Date)
