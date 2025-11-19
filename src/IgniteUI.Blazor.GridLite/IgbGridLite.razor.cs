@@ -45,7 +45,7 @@ public partial class IgbGridLite<TItem> : ComponentBase, IDisposable where TItem
     /// Sort configuration property for the grid.
     /// </summary>
     [Parameter]
-    public GridSortConfiguration? SortConfiguration { get; set; }
+    public IgbGridLiteSortConfiguration? SortConfiguration { get; set; }
 
     /// <summary>
     /// Initial sort expressions to apply when the grid is rendered
