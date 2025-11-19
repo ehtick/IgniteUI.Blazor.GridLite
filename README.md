@@ -64,10 +64,10 @@ In your `App.razor` or layout file, include one of the available themes:
         
         columns = new List<IgbColumnConfiguration>
         {
-            new() { Key = nameof(Employee.Id), HeaderText = "ID", Width = "100px", Type = DataType.Number },
-            new() { Key = nameof(Employee.Name), HeaderText = "Employee Name", Type = DataType.String },
-            new() { Key = nameof(Employee.Department), HeaderText = "Department", Type = DataType.String },
-            new() { Key = nameof(Employee.Salary), HeaderText = "Salary", Width = "150px", Type = DataType.Number }
+            new() { Key = nameof(Employee.Id), HeaderText = "ID", Width = "100px", Type = GridLiteColumnDataType.Number },
+            new() { Key = nameof(Employee.Name), HeaderText = "Employee Name", Type = GridLiteColumnDataType.String },
+            new() { Key = nameof(Employee.Department), HeaderText = "Department", Type = GridLiteColumnDataType.String },
+            new() { Key = nameof(Employee.Salary), HeaderText = "Salary", Width = "150px", Type = GridLiteColumnDataType.Number }
         };
     }
 }

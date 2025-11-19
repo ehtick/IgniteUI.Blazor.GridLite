@@ -10,7 +10,7 @@ public class IgbColumnConfiguration
 
     [JsonPropertyName("type")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-    public DataType? Type { get; set; }
+    public GridLiteColumnDataType? Type { get; set; }
 
     [JsonPropertyName("headerText")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
@@ -94,8 +94,8 @@ public class IgbColumnConfiguration
 /// <summary>
 /// The data type for a column.
 /// </summary>
-[JsonConverter(typeof(CamelCaseEnumConverter<DataType>))]
-public enum DataType
+[JsonConverter(typeof(CamelCaseEnumConverter<GridLiteColumnDataType>))]
+public enum GridLiteColumnDataType
 {
     String,
     Number,
