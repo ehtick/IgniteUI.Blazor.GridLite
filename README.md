@@ -139,22 +139,22 @@ Handle sorting and filtering events:
              OnFiltered="@HandleFiltered" />
 
 @code {
-    private void HandleSorting(IgbGridLiteSortingEvent e)
+    private void HandleSorting(IgbGridLiteSortingEventArgs e)
     {
         // Handle on sorting
     }
 
-    private void HandleSorted(IgbGridLiteSortedEvent e)
+    private void HandleSorted(IgbGridLiteSortedEventArgs e)
     {
         // Handle after sort
     }
 
-    private void HandleFiltering(IgbGridLiteFilteringEvent e)
+    private void HandleFiltering(IgbGridLiteFilteringEventArgs e)
     {
         // Handle on filtering
     }
 
-    private void HandleFiltered(IgbGridLiteFilteredEvent e)
+    private void HandleFiltered(IgbGridLiteFilteredEventArgs e)
     {
         // Handle after filter
     }

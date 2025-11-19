@@ -75,14 +75,14 @@ public partial class IgbGridLite<TItem> : ComponentBase, IDisposable where TItem
     /// The expression can be modified prior to the operation running.
     /// </remarks>
     [Parameter]
-    public EventCallback<IgbGridLiteSortingEvent> OnSorting { get; set; }
+    public EventCallback<IgbGridLiteSortingEventArgs> OnSorting { get; set; }
 
     /// <summary>
     /// Fires when a sort operation initiated through the UI has completed.
     /// Returns the sort expression used for the operation.
     /// </summary>
     [Parameter]
-    public EventCallback<IgbGridLiteSortedEvent> OnSorted { get; set; }
+    public EventCallback<IgbGridLiteSortedEventArgs> OnSorted { get; set; }
 
     /// <summary>
     /// Fires when filtering is initiated through the UI.
@@ -92,14 +92,14 @@ public partial class IgbGridLite<TItem> : ComponentBase, IDisposable where TItem
     /// The expression can be modified prior to the operation running.
     /// </remarks>
     [Parameter]
-    public EventCallback<IgbGridLiteFilteringEvent> OnFiltering { get; set; }
+    public EventCallback<IgbGridLiteFilteringEventArgs> OnFiltering { get; set; }
 
     /// <summary>
     /// Fires when a filter operation initiated through the UI has completed.
     /// Returns the filter state for the affected column.
     /// </summary>
     [Parameter]
-    public EventCallback<IgbGridLiteFilteredEvent> OnFiltered { get; set; }
+    public EventCallback<IgbGridLiteFilteredEventArgs> OnFiltered { get; set; }
 
     /// <summary>
     /// Fires when <see cref="RenderAsync"/> completes

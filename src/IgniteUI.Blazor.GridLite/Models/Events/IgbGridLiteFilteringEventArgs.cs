@@ -5,7 +5,7 @@ namespace IgniteUI.Blazor.Controls;
 /// <summary>
 /// Event object for the filtering event of the grid.
 /// </summary>
-public class IgbGridLiteFilteringEvent
+public class IgbGridLiteFilteringEventArgs
 {
     /// <summary>
     /// The target column for the filter operation.

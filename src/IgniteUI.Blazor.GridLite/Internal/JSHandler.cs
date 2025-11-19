@@ -42,7 +42,7 @@ internal sealed class JSHandler<TItem> : IDisposable where TItem : class
             var expression = JsonSerializer.Deserialize<IgbGridLiteSortExpression>(
                 sortExpression.GetRawText());
 
-            var eventArgs = new IgbGridLiteSortingEvent
+            var eventArgs = new IgbGridLiteSortingEventArgs
             {
                 Expression = expression,
                 Cancel = false
@@ -77,7 +77,7 @@ internal sealed class JSHandler<TItem> : IDisposable where TItem : class
             var expression = JsonSerializer.Deserialize<IgbGridLiteSortExpression>(
                 sortExpression.GetRawText());
 
-            var eventArgs = new IgbGridLiteSortedEvent
+            var eventArgs = new IgbGridLiteSortedEventArgs
             {
                 Expression = expression
             };
@@ -105,12 +105,12 @@ internal sealed class JSHandler<TItem> : IDisposable where TItem : class
 
         try
         {
-            var eventData = JsonSerializer.Deserialize<IgbGridLiteFilteringEvent>(
+            var eventData = JsonSerializer.Deserialize<IgbGridLiteFilteringEventArgs>(
                 filteringEvent.GetRawText());
 
             await GridReference.OnFiltering.InvokeAsync(eventData);
 
-            // IgbGridLiteFilteringEvent doesn't have a Cancel property in the TypeScript definition
+            // IgbGridLiteFilteringEventArgs doesn't have a Cancel property in the TypeScript definition
             // but you could add it if needed
             return false;
         }
@@ -135,7 +135,7 @@ internal sealed class JSHandler<TItem> : IDisposable where TItem : class
 
         try
         {
-            var eventData = JsonSerializer.Deserialize<IgbGridLiteFilteredEvent>(
+            var eventData = JsonSerializer.Deserialize<IgbGridLiteFilteredEventArgs>(
                 filteredEvent.GetRawText());
 
             GridReference.OnFiltered.InvokeAsync(eventData);

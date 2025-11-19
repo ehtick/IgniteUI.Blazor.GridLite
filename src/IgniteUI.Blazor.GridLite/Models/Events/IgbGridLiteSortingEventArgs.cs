@@ -5,7 +5,7 @@ namespace IgniteUI.Blazor.Controls;
 /// <summary>
 /// Event object for the sorting event of the grid.
 /// </summary>
-public class IgbGridLiteSortingEvent
+public class IgbGridLiteSortingEventArgs
 {
     /// <summary>
     /// The sort expression which will be used for the operation.
