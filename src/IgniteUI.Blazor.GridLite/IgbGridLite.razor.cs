@@ -23,7 +23,7 @@ public partial class IgbGridLite<TItem> : ComponentBase, IDisposable where TItem
     /// Column configurations for the grid
     /// </summary>
     [Parameter]
-    public List<ColumnConfiguration>? Columns { get; set; }
+    public List<IgbColumnConfiguration>? Columns { get; set; }
 
     /// <summary>
     /// The options to customize the grid with
@@ -241,7 +241,7 @@ public partial class IgbGridLite<TItem> : ComponentBase, IDisposable where TItem
     /// Updates the column configurations for the grid.
     /// </summary>
     /// <param name="newColumns">The new column configurations</param>
-    public virtual async Task UpdateColumnsAsync(List<ColumnConfiguration> newColumns)
+    public virtual async Task UpdateColumnsAsync(List<IgbColumnConfiguration> newColumns)
     {
         Columns = newColumns;
         var json = JsonSerializer.Serialize(newColumns.Select(c => c.ToJsConfig()), GridJsonSerializerOptions);
@@ -313,7 +313,7 @@ public partial class IgbGridLite<TItem> : ComponentBase, IDisposable where TItem
     /// </summary>
     /// <param name="key">The column key to retrieve</param>
     /// <returns>The column configuration if found, otherwise null</returns>
-    public virtual ColumnConfiguration GetColumn(string key)
+    public virtual IgbColumnConfiguration GetColumn(string key)
     {
         return Columns?.FirstOrDefault(c => c.Key == key);
     }
@@ -323,7 +323,7 @@ public partial class IgbGridLite<TItem> : ComponentBase, IDisposable where TItem
     /// </summary>
     /// <param name="index">The zero-based column index</param>
     /// <returns>The column configuration if found, otherwise null</returns>
-    public virtual ColumnConfiguration GetColumn(int index)
+    public virtual IgbColumnConfiguration GetColumn(int index)
     {
         return Columns?.ElementAtOrDefault(index);
     }

@@ -56,13 +56,13 @@ In your `App.razor` or layout file, include one of the available themes:
 
 @code {
     private List<Employee> employees = new();
-    private List<ColumnConfiguration> columns = new();
+    private List<IgbColumnConfiguration> columns = new();
 
     protected override void OnInitialized()
     {
         employees = GetEmployees();
         
-        columns = new List<ColumnConfiguration>
+        columns = new List<IgbColumnConfiguration>
         {
             new() { Key = nameof(Employee.Id), HeaderText = "ID", Width = "100px", Type = DataType.Number },
             new() { Key = nameof(Employee.Name), HeaderText = "Employee Name", Type = DataType.String },
@@ -101,7 +101,7 @@ In your `App.razor` or layout file, include one of the available themes:
 Enable sorting on specific columns:
 
 ```csharp
-new ColumnConfiguration
+new IgbColumnConfiguration
 { 
     Key = nameof(Employee.Name), 
     HeaderText = "Name",
@@ -115,7 +115,7 @@ new ColumnConfiguration
 Enable filtering on columns:
 
 ```csharp
-new ColumnConfiguration
+new IgbColumnConfiguration
 { 
     Key = nameof(Employee.Department), 
     HeaderText = "Department",
@@ -163,7 +163,7 @@ Handle sorting and filtering events:
 
 ## Column Configuration
 
-The `ColumnConfiguration` class supports:
+The `IgbColumnConfiguration` class supports:
 
 - `Key`: Property name to bind to (use `nameof()` for type safety)
 - `HeaderText`: Column header display text

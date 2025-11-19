@@ -9,5 +9,5 @@ internal class IgbGridLiteHeaderContext<TItem> where TItem : class
     /// <summary>
     /// The current configuration for the column.
     /// </summary>
-    public ColumnConfiguration Column { get; set; }
+    public IgbColumnConfiguration Column { get; set; }
 }

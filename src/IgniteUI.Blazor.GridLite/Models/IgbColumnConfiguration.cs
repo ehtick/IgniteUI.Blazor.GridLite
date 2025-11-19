@@ -3,7 +3,7 @@ using IgniteUI.Blazor.Controls.Internal;
 
 namespace IgniteUI.Blazor.Controls;
 
-public class ColumnConfiguration
+public class IgbColumnConfiguration
 {
     [JsonPropertyName("key")]
     public string Key { get; set; }

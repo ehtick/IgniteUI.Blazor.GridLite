@@ -94,8 +94,8 @@
 
     }
 
-    public List<ColumnConfiguration> cols = new List<ColumnConfiguration> {
-        new ColumnConfiguration {
+    public List<IgbColumnConfiguration> cols = new List<IgbColumnConfiguration> {
+        new IgbColumnConfiguration {
             Key = nameof(NwindDataItem.ProductID),
             Type = DataType.Number,
             Sort = new ColumnSortConfiguration(){
@@ -104,7 +104,7 @@
             Filter = true,
             Resizable = true
         },
-        new ColumnConfiguration {
+        new IgbColumnConfiguration {
             Key = nameof(NwindDataItem.ProductName),
             Type = DataType.String,
             Sort = true,
