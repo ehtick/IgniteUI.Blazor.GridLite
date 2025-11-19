@@ -105,7 +105,7 @@ public partial class IgbGridLite<TItem> : ComponentBase, IDisposable where TItem
     /// Fires when <see cref="RenderAsync"/> completes
     /// </summary>
     [Parameter]
-    public EventCallback OnRendered { get; set; }
+    public EventCallback Rendered { get; set; }
 
     private ElementReference grid;
     private IJSObjectReference blazorIgbGridLite;
@@ -203,7 +203,7 @@ public partial class IgbGridLite<TItem> : ComponentBase, IDisposable where TItem
         await InvokeVoidJsAsync("blazor_igc_grid_lite.renderGrid",
             jsHandler.ObjectReference, grid, json, GetEventFlags());
 
-        await OnRendered.InvokeAsync();
+        await Rendered.InvokeAsync();
     }
 
     private object GetEventFlags()
