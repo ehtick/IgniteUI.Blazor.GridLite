@@ -3,14 +3,14 @@ using IgniteUI.Blazor.Controls.Internal;
 
 namespace IgniteUI.Blazor.Controls;
 
-public class ColumnConfiguration<TItem> where TItem : class
+public class IgbColumnConfiguration
 {
     [JsonPropertyName("key")]
     public string Key { get; set; }
 
     [JsonPropertyName("type")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-    public DataType? Type { get; set; }
+    public GridLiteColumnDataType? Type { get; set; }
 
     [JsonPropertyName("headerText")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
@@ -37,10 +37,10 @@ public class ColumnConfiguration<TItem> where TItem : class
     public object Filter { get; set; }
 
     [JsonIgnore]
-    internal Func<IgbGridLiteHeaderContext<TItem>, object> HeaderTemplate { get; set; }
+    internal Func<IgbGridLiteHeaderContext<object>, object> HeaderTemplate { get; set; }
 
     [JsonIgnore]
-    internal Func<IgbGridLiteCellContext<TItem>, object> CellTemplate { get; set; }
+    internal Func<IgbGridLiteCellContext<object>, object> CellTemplate { get; set; }
 
     /// <summary>
     /// Converts the column configuration to a JavaScript-compatible format.
@@ -65,7 +65,7 @@ public class ColumnConfiguration<TItem> where TItem : class
     {
         if (sort == null) return null;
         if (sort is bool b) return b;
-        if (sort is ColumnSortConfiguration config)
+        if (sort is IgbColumnSortConfiguration config)
         {
             return new
             {
@@ -80,7 +80,7 @@ public class ColumnConfiguration<TItem> where TItem : class
     {
         if (filter == null) return null;
         if (filter is bool b) return b;
-        if (filter is ColumnFilterConfiguration config)
+        if (filter is IgbColumnFilterConfiguration config)
         {
             return new
             {
@@ -94,8 +94,8 @@ public class ColumnConfiguration<TItem> where TItem : class
 /// <summary>
 /// The data type for a column.
 /// </summary>
-[JsonConverter(typeof(CamelCaseEnumConverter<DataType>))]
-public enum DataType
+[JsonConverter(typeof(CamelCaseEnumConverter<GridLiteColumnDataType>))]
+public enum GridLiteColumnDataType
 {
     String,
     Number,

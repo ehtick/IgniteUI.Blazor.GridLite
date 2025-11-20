@@ -5,13 +5,13 @@ namespace IgniteUI.Blazor.Controls;
 /// <summary>
 /// Event object for the sorting event of the grid.
 /// </summary>
-public class IgbGridLiteSortingEvent
+public class IgbGridLiteSortingEventArgs
 {
     /// <summary>
     /// The sort expression which will be used for the operation.
     /// </summary>
     [JsonPropertyName("expression")]
-    public SortExpression Expression { get; set; }
+    public IgbGridLiteSortExpression Expression { get; set; }
 
     /// <summary>
     /// Set to true to cancel the operation.

@@ -56,18 +56,18 @@ In your `App.razor` or layout file, include one of the available themes:
 
 @code {
     private List<Employee> employees = new();
-    private List<ColumnConfiguration<Employee>> columns = new();
+    private List<IgbColumnConfiguration> columns = new();
 
     protected override void OnInitialized()
     {
         employees = GetEmployees();
         
-        columns = new List<ColumnConfiguration<Employee>>
+        columns = new List<IgbColumnConfiguration>
         {
-            new() { Key = nameof(Employee.Id), HeaderText = "ID", Width = "100px", Type = DataType.Number },
-            new() { Key = nameof(Employee.Name), HeaderText = "Employee Name", Type = DataType.String },
-            new() { Key = nameof(Employee.Department), HeaderText = "Department", Type = DataType.String },
-            new() { Key = nameof(Employee.Salary), HeaderText = "Salary", Width = "150px", Type = DataType.Number }
+            new() { Key = nameof(Employee.Id), HeaderText = "ID", Width = "100px", Type = GridLiteColumnDataType.Number },
+            new() { Key = nameof(Employee.Name), HeaderText = "Employee Name", Type = GridLiteColumnDataType.String },
+            new() { Key = nameof(Employee.Department), HeaderText = "Department", Type = GridLiteColumnDataType.String },
+            new() { Key = nameof(Employee.Salary), HeaderText = "Salary", Width = "150px", Type = GridLiteColumnDataType.Number }
         };
     }
 }
@@ -82,12 +82,12 @@ In your `App.razor` or layout file, include one of the available themes:
              FilterExpressions="@initialFilter" />
 
 @code {
-    private List<SortExpression> initialSort = new()
+    private List<IgbGridLiteSortExpression> initialSort = new()
     {
         new() { Key = nameof(Employee.Name), Direction = GridLiteSortingDirection.Ascending }
     };
     
-    private List<FilterExpression> initialFilter = new()
+    private List<IgbGridLiteFilterExpression> initialFilter = new()
     {
         new() { Key = nameof(Employee.Department), Condition = "contains", SearchTerm = "Sales" }
     };
@@ -101,7 +101,7 @@ In your `App.razor` or layout file, include one of the available themes:
 Enable sorting on specific columns:
 
 ```csharp
-new ColumnConfiguration<Employee> 
+new IgbColumnConfiguration
 { 
     Key = nameof(Employee.Name), 
     HeaderText = "Name",
@@ -115,11 +115,11 @@ new ColumnConfiguration<Employee>
 Enable filtering on columns:
 
 ```csharp
-new ColumnConfiguration<Employee> 
+new IgbColumnConfiguration
 { 
     Key = nameof(Employee.Department), 
     HeaderText = "Department",
-    Filter = new ColumnFilterConfiguration 
+    Filter = new IgbColumnFilterConfiguration 
     { 
         CaseSensitive = false 
     }
@@ -133,28 +133,28 @@ Handle sorting and filtering events:
 ```razor
 <IgbGridLite Data="@employees" 
              Columns="@columns"
-             OnSorting="@HandleSorting"
-             OnSorted="@HandleSorted"
-             OnFiltering="@HandleFiltering"
-             OnFiltered="@HandleFiltered" />
+             Sorting="@HandleSorting"
+             Sorted="@HandleSorted"
+             Filtering="@HandleFiltering"
+             Filtered="@HandleFiltered" />
 
 @code {
-    private void HandleSorting(IgbGridLiteSortingEvent e)
+    private void HandleSorting(IgbGridLiteSortingEventArgs e)
     {
         // Handle on sorting
     }
 
-    private void HandleSorted(IgbGridLiteSortedEvent e)
+    private void HandleSorted(IgbGridLiteSortedEventArgs e)
     {
         // Handle after sort
     }
 
-    private void HandleFiltering(IgbGridLiteFilteringEvent e)
+    private void HandleFiltering(IgbGridLiteFilteringEventArgs e)
     {
         // Handle on filtering
     }
 
-    private void HandleFiltered(IgbGridLiteFilteredEvent e)
+    private void HandleFiltered(IgbGridLiteFilteredEventArgs e)
     {
         // Handle after filter
     }
@@ -163,7 +163,7 @@ Handle sorting and filtering events:
 
 ## Column Configuration
 
-The `ColumnConfiguration<TItem>` class supports:
+The `IgbColumnConfiguration` class supports:
 
 - `Key`: Property name to bind to (use `nameof()` for type safety)
 - `HeaderText`: Column header display text

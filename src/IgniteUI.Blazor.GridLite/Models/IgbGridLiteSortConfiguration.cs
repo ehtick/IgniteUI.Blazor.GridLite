@@ -5,7 +5,7 @@ namespace IgniteUI.Blazor.Controls;
 /// <summary>
 /// Configures the sort behavior for the grid.
 /// </summary>
-public class GridSortConfiguration
+public class IgbGridLiteSortConfiguration
 {   
     /// <summary>   
     /// Whether multiple sorting is enabled.
