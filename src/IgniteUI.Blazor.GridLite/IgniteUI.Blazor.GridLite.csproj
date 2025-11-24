@@ -12,6 +12,13 @@
     <RootNamespace>IgniteUI.Blazor.Controls</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Content Remove="wwwroot\css\themes\.gitkeep" />
+    <Content Remove="wwwroot\js\.gitkeep" />
+    <None Include="wwwroot\css\themes\.gitkeep" />
+    <None Include="wwwroot\js\.gitkeep" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <SupportedPlatform Include="browser" />
