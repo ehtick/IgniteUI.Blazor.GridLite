@@ -33,7 +33,7 @@ public class IgbColumnConfiguration
     public bool Sortable { get; init; }
 
     [JsonPropertyName("sortingCaseSensitive")]
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
     public bool SortingCaseSensitive { get; init; }
 
     [JsonPropertyName("filterable")]
@@ -41,7 +41,7 @@ public class IgbColumnConfiguration
     public bool Filterable { get; init; }
 
     [JsonPropertyName("filteringCaseSensitive")]
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
     public bool FilteringCaseSensitive { get; init; }
 
     [JsonIgnore]

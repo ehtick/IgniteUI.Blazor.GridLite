@@ -299,7 +299,7 @@ public partial class IgbGridLite<TItem> : ComponentBase, IDisposable where TItem
     /// <summary>
     /// Resets the current sort state of the grid.
     /// </summary>
-    /// <param name="key">Optional column key. If provided, only clears sort for that column. 
+    /// <param name="key">Optional column field. If provided, only clears sort for that column. 
     /// If null, clears all sorting.</param>
     public virtual async Task ClearSortAsync(string key = null)
     {
@@ -329,7 +329,7 @@ public partial class IgbGridLite<TItem> : ComponentBase, IDisposable where TItem
     /// <summary>
     /// Resets the current filter state of the grid.
     /// </summary>
-    /// <param name="key">Optional column key. If provided, only clears filter for that column. 
+    /// <param name="key">Optional column field. If provided, only clears filter for that column. 
     /// If null, clears all filtering.</param>
     public virtual async Task ClearFilterAsync(string key = null)
     {
@@ -339,11 +339,10 @@ public partial class IgbGridLite<TItem> : ComponentBase, IDisposable where TItem
     /// <summary>
     /// Returns the current column configuration list.
     /// </summary>
-    /// <param name="index">The zero-based column index</param>
     /// <returns>The column configuration if found, otherwise null</returns>
     public ValueTask<IgbColumnConfiguration[]> GetColumnsAsync()
     {
-        return this.InvokeJsAsync<IgbColumnConfiguration[]>("getColumns");
+        return this.InvokeJsAsync<IgbColumnConfiguration[]>("blazor_igc_grid_lite.getColumns", gridId);
     }
 
     private async ValueTask<TValue> InvokeJsAsync<TValue>(string identifier, params object[] args)
