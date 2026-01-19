@@ -345,6 +345,18 @@ public partial class IgbGridLite<TItem> : ComponentBase, IDisposable where TItem
         return this.InvokeJsAsync<IgbColumnConfiguration[]>("blazor_igc_grid_lite.getColumns", gridId);
     }
 
+    /// <summary>
+    /// Navigates to a position in the grid based on provided row index and column field.
+    /// </summary>
+    /// <param name="row">The row index to navigate to</param>
+    /// <param name="field">The column field to navigate to, if any</param>
+    /// <param name="activate">Optionally also activate the navigated cell</param>
+    /// <returns></returns>
+    public virtual async Task NavigateToAsync(long row, string field = null, bool activate = false)
+    {
+        await InvokeVoidJsAsync("blazor_igc_grid_lite.navigateTo", gridId, row, field, activate);
+    }
+
     private async ValueTask<TValue> InvokeJsAsync<TValue>(string identifier, params object[] args)
     {
         if (blazorIgbGridLite == null) { return default; }

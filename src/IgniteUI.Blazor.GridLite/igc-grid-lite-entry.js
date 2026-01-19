@@ -152,6 +152,13 @@ window.blazor_igc_grid_lite = {
         return grid ? grid.columns : null;
     },
 
+    navigateTo(id, row, field, activate) {
+        const grid = this.grids.get(id);
+        if (grid) {
+            grid.navigateTo(row, field, activate);
+        }
+    },
+
     destroyGrid(id) {
         const grid = this.grids.get(id);
         if (grid) {

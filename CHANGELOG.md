@@ -7,12 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-This release updates to `igniteui-grid-lite` version `0.3.1` with a new declarative column API.
+This release updates to `igniteui-grid-lite` version `0.4.0` with a new declarative column API.
 
 ### Added
 
 - New `IgbGridLiteColumn` component for declarative column definition
-- Updated to `igniteui-grid-lite` version `~0.3.1`
+- New `NavigateToAsync` method. Navigates to a position in the grid based on provided row index and column field.
+- Updated to `igniteui-grid-lite` version `~0.4.0` with multiple bug fixes
 
 ### Changed
 
